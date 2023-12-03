@@ -1,0 +1,26 @@
+version: "3"
+services:
+  react-app:
+    image: my-react-app
+    stdin_open: true
+    depends_on:
+      - api-server
+    ports: 
+      - "3000:3000"
+    networks:
+      - mern-app
+  api-server:
+    image: my-node-app
+    ports:
+      - "5000:5000"
+    networks:
+      - mern-app
+    # Set your MongoDB Atlas connection string as an environment variable
+    environment:
+      - MONGODB_URI="mongodb+srv://abhay:banerjee@dev-cluster.jbmkpl0.mongodb.net/news-prograd?retryWrites=true&w=majority"
+networks:
+  mern-app:
+    driver: bridge
+
+
+
